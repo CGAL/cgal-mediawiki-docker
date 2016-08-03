@@ -13,6 +13,7 @@ some dump files contain SQL instructions to create the databases (usually when t
 used when the dump was done), other don't. In the latter case :
 
 > docker exec [mysql-server's name] sh -c 'exec mysql -u[user (usually root)] -p[DB password] -e"CREATE DATABASE [database's name]"'
+> docker exec [mysql-server's name] sh -c 'exec mysql -u[user (usually root)] -p[DB password] -e"USE [database's name]"'
 
 The database is now ready. 
 The next step will be to build the wikimedia image. 
