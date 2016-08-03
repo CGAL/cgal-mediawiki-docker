@@ -6,7 +6,7 @@ First you need to start a mysql server in a container. You can use the official 
 > docker run --rm --name [mysql-server's name] -v [the volume used to store the mediawiki iamges] -p 3306:3306 -e MYSQL_ROOT_PASSWORD=[DB password] mysql
  
  Then you need to load the wiki's database. 
- > docker exec -i [mysql-server] mysql -u[user] -p[DB password] < [path to your dump file on the host]
+ > docker exec -i [mysql-server] mysql -u[user] -p[DB password] [database's name if the DB already exists] < [path to your dump file on the host]
 
 Depending on your dump file, you might have to create the data bases yourself before you try to restore the dump :
 some dump files contain SQL instructions to create the databases (usually when the option --all-databases has been
