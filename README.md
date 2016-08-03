@@ -7,10 +7,12 @@ First you need to start a mysql server in a container. You can use the official 
  
  Then you need to load the wiki's database. 
  > docker exec -i [mysql-server] mysql -u[user] -p[DB password] < [path to your dump file on the host]
+
 Depending on your dump file, you might have to create the data bases yourself before you try to restore the dump :
 some dump files contain SQL instructions to create the databases (usually when the option --all-databases has been
 used when the dump was done), other don't. In the latter case :
-docker exec [mysql-server's name] sh -c 'exec mysql -u[user (usually root)] -p[DB password] -e"CREATE DATABASE [database's name]"'
+
+> docker exec [mysql-server's name] sh -c 'exec mysql -u[user (usually root)] -p[DB password] -e"CREATE DATABASE [database's name]"'
 
 The database is now ready. 
 The next step will be to build the wikimedia image. 
