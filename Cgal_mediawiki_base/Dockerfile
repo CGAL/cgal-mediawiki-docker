@@ -47,6 +47,16 @@ RUN MEDIAWIKI_DOWNLOAD_URL="https://releases.wikimedia.org/mediawiki/$MEDIAWIKI_
 COPY apache/mediawiki.conf /etc/apache2/
 RUN echo Include /etc/apache2/mediawiki.conf >> /etc/apache2/apache2.conf
 
+
+RUN  set -x; \
+    apt-get update \
+    && apt-get install -y zip \
+    && apt-get install -y wget
+COPY composer-install.sh /usr/src/mediawiki/composer-install.sh
+RUN chmod +x /usr/src/mediawiki/composer-install.sh \
+&& cd /usr/src/mediawiki \
+&& sh "/usr/src/mediawiki/composer-install.sh" 
+
 COPY docker-entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
