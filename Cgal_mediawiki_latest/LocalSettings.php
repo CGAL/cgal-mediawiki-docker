@@ -13,11 +13,14 @@
 
 # If you customize your file layout, set $IP to the directory that contains
 # the other MediaWiki files. It will be used as a base to locate files.
-if( defined( 'MW_INSTALL_PATH' ) ) {
-	$IP = MW_INSTALL_PATH;
-} else {
-	$IP = dirname( __FILE__ );
-}
+#if( defined( 'MW_INSTALL_PATH' ) ) {
+#	$IP = MW_INSTALL_PATH;
+#} else {
+	$IP = "/usr/src/mediawiki/";
+	#dirname( __FILE__ );
+#}
+
+
 
 $path = array( $IP, "$IP/includes", "$IP/languages" );
 set_include_path( implode( PATH_SEPARATOR, $path ) . PATH_SEPARATOR . get_include_path() );
@@ -39,9 +42,9 @@ $wgSitename         = "CGAL develop wiki";
 
 ## The URL base path to the directory containing the wiki;
 ## defaults for all runtime URL paths are based off of this.
-$wgScriptPath       = "/CGAL/Members/w";
+$wgScriptPath       = "";
 # Virtual path. This directory MUST be different from the one used in $wgScriptPath
-$wgArticlePath = '/CGAL/Members/wiki/$1';
+$wgArticlePath = '/wiki/$1';
 # http://www.mediawiki.org/wiki/Manual:$wgUsePathInfo
 # Whether to use 'pretty' URLs, e.g. index.php/Page_title
 $wgUsePathInfo = true;
@@ -101,7 +104,7 @@ $wgUseImageMagick = true;
 $wgImageMagickTempDir = "/srv/CGAL/wiki/images/tmp";
 $wgImageMagickConvertCommand = "/usr/bin/convert";
 $wgUploadDirectory       = "/srv/CGAL/wiki/images";
-$wgUploadPath       = "/CGAL/Members/wiki-images";
+$wgUploadPath       = "/wiki-images";
 
 ## If you use ImageMagick (or any other shell command) on a
 ## Linux server, this will need to be set to the name of an
@@ -122,6 +125,9 @@ $wgShellLocale = "en_US.utf8";
 #
 # Use http://www.mediawiki.org/wiki/Extension:Math instead
 require_once("$IP/extensions/Math/Math.php");
+// Set MathML as default rendering option
+$wgDefaultUserOptions['math'] = 'mathml';
+$wgMathFullRestbaseURL= 'https://api.formulasearchengine.com/';
 $wgTexvc = "$IP/math-texvc/texvc";
 $wgMathTexvcCheckExecutable = "$IP/math-texvc/texvccheck";
 
@@ -134,7 +140,12 @@ $wgProxyKey = "3228af4b1589702ba673346685d2afbcdac500d5a2da385703527575e45822e3"
 ## Default skin: you can change the default skin. Use the internal symbolic
 ## names, ie 'standard', 'nostalgia', 'cologneblue', 'monobook':
 $wgDefaultSkin = 'monobook';
-
+# Enabled skins.
+# The following skins were automatically enabled:
+wfLoadSkin( 'CologneBlue' );
+wfLoadSkin( 'Modern' );
+wfLoadSkin( 'MonoBook' );
+wfLoadSkin( 'Vector' );
 ## For attaching licensing metadata to pages, and displaying an
 ## appropriate copyright notice / icon. GNU Free Documentation
 ## License and Creative Commons licenses are supported so far.
@@ -227,7 +238,7 @@ require_once("$IP/extensions/Renameuser/specials/SpecialRenameuser.php");
 require_once("$IP/extensions/DiscussionThreading/DiscussionThreading.php");
 
 # Extension http://www.mediawiki.org/wiki/Extension:SyntaxHighlight_GeSHi
-require_once("$IP/extensions/SyntaxHighlight_GeSHi/SyntaxHighlight_GeSHi.php");
+wfLoadExtension( 'SyntaxHighlight_GeSHi' );
 $wgSyntaxHighlightDefaultLang = "cpp-qt";
 
 /** Should we allow the user's to select their own skin that will override the default? */
@@ -330,4 +341,5 @@ $wgJobRunRate = 10;
 # http://www.semantic-mediawiki.org/wiki/Pass_values_to_a_form_in_order_to_dynamically_change_its_content_/_layout
 # https://www.mediawiki.org/wiki/Extension:UrlGetParameters
 require_once( "$IP/extensions/UrlGetParameters/UrlGetParameters.php" );
+
 
