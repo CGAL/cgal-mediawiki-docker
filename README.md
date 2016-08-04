@@ -14,7 +14,9 @@ The database is now ready.
 The next step will be to build the wikimedia image. 
 Let's start with the base image if it doesn't exist yet:
 > docker build -t 'cgal/mediawiki:base' [path to Cgal_mediawiki_base]
+
 Then the latest :
+
 > docker build -t 'cgal/mediawiki:latest' [path to Cgal_mediawiki_latest]
 Now you can run the container :
 > docker run --rm --name mediawiki --link [mysql-server's name]:mysql -p 8080:80 -e MEDIAWIKI_DB_PASSWORD=[DB password] cgal/mediawiki:latest
