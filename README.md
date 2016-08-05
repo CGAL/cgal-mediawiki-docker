@@ -3,7 +3,7 @@ This repo contains the files used to deploy CGAL wiki with docker.
 
 First you need to start a mysql server in a container. You can use the official mySQL image :
  
-> docker run --rm --name [mysql-server's name] -v [the volume used to store the mediawiki iamges] -p 3306:3306 -e MYSQL_ROOT_PASSWORD=[DB root password] -e MYSQL_USER=cgalwiki -e MYSQL_PASSWORD=[DB Password] -e MYSQL_DATABASE=cgalwikidb mysql
+> docker run --rm --name [mysql-server's name] -p 3306:3306 -e MYSQL_ROOT_PASSWORD=[DB root password] -e MYSQL_USER=cgalwiki -e MYSQL_PASSWORD=[DB Password] -e MYSQL_DATABASE=cgalwikidb mysql
  
  This will create a database called cgalwikidb and a user 'cgalwiki' that has superuser access but only for cgalwikidb.
  Then you need to load the wiki's database. 
@@ -22,6 +22,8 @@ Then the latest :
 
 Now you can run the container :
 
-> docker run --rm --name mediawiki --link [mysql-server's name]:mysql -p 8080:80 -e MEDIAWIKI_DB_PASSWORD=[DB password] cgal/mediawiki:latest
+> docker run --rm --name mediawiki --link [mysql-server's name]:mysql -v [the volume used to store the mediawiki iamges on the host]:[path on the container]:Z [-p 8080:80 -e MEDIAWIKI_DB_PASSWORD=[DB password] cgal/mediawiki:latest
+
+Any time the wiki is upgraded, the update (/var/www/html/maintenance/update.php) script must be executed inside the container. 
 
 The wiki is now online.

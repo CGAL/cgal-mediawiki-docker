@@ -4,11 +4,6 @@ RUN set -x; \
     apt-get update \
     && apt-get install -y python
 
-#Copy the LocalSettings.php to the image
-ADD LocalSettings.php /usr/src/mediawiki/
-#Replace composer.json file
-COPY composer.local.json /usr/src/mediawiki/composer.local.json 
-
 #Download the extensions and extract them
 RUN cd /usr/src/mediawiki/extensions/ \
 && curl https://extdist.wmflabs.org/dist/extensions/Math-REL1_27-efdd7c2.tar.gz --output ./math.tar.gz \
@@ -29,5 +24,17 @@ RUN cd /usr/src/mediawiki/extensions/ \
 && tar -xf ./magicnocache.tar.gz \
 && tar -xf ./urlgetparameters.tar.gz 
 
+#Replace composer.json file
+COPY composer.local.json /usr/src/mediawiki/composer.local.json 
 RUN cd /usr/src/mediawiki \
 && /usr/src/mediawiki/composer.phar update
+
+ADD cgal-dev-wiki-logo2.png /var/www/html/img/
+
+RUN apt-get install -y nano 
+ENV TERM=linux
+
+ADD php.ini /usr/local/etc/php/
+
+#Copy the LocalSettings.php to the image
+ADD LocalSettings.php /usr/src/mediawiki/

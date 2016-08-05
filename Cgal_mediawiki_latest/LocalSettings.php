@@ -13,12 +13,11 @@
 
 # If you customize your file layout, set $IP to the directory that contains
 # the other MediaWiki files. It will be used as a base to locate files.
-#if( defined( 'MW_INSTALL_PATH' ) ) {
-#	$IP = MW_INSTALL_PATH;
-#} else {
-	$IP = "/usr/src/mediawiki/";
-	#dirname( __FILE__ );
-#}
+if( defined( 'MW_INSTALL_PATH' ) ) {
+	$IP = MW_INSTALL_PATH;
+} else {
+	$IP = dirname( __FILE__ );
+}
 
 
 
@@ -101,10 +100,10 @@ $wgMemCachedServers = array();
 ## is writable, then set this to true:
 $wgEnableUploads       = true;
 $wgUseImageMagick = true;
-$wgImageMagickTempDir = "/srv/CGAL/wiki/images/tmp";
+$wgImageMagickTempDir = "/var/www/html/images/tmp";
 $wgImageMagickConvertCommand = "/usr/bin/convert";
-$wgUploadDirectory       = "/srv/CGAL/wiki/images";
-$wgUploadPath       = "/wiki-images";
+$wgUploadDirectory       = "/var/www/html/images";
+$wgUploadPath       = "/images";
 
 ## If you use ImageMagick (or any other shell command) on a
 ## Linux server, this will need to be set to the name of an
@@ -128,8 +127,8 @@ require_once("$IP/extensions/Math/Math.php");
 // Set MathML as default rendering option
 $wgDefaultUserOptions['math'] = 'mathml';
 $wgMathFullRestbaseURL= 'https://api.formulasearchengine.com/';
-$wgTexvc = "$IP/math-texvc/texvc";
-$wgMathTexvcCheckExecutable = "$IP/math-texvc/texvccheck";
+#$wgTexvc = "$IP/math-texvc/texvc";
+#$wgMathTexvcCheckExecutable = "$IP/math-texvc/texvccheck";
 
 $wgLocalInterwiki   = $wgSitename;
 
@@ -164,7 +163,7 @@ $configdate = gmdate( 'YmdHis', @filemtime( __FILE__ ) );
 $wgCacheEpoch = max( $wgCacheEpoch, $configdate );
 	
 
-$wgLogo = "/img/cgal-dev-wiki-logo2.png";
+$wgLogo ="/img/cgal-dev-wiki-logo2.png";
 $wgFavicon = '/img/cgal-dev-wiki-favicon.png';
 
 # See ConfirmAccount extension below
