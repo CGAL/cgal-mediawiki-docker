@@ -72,7 +72,7 @@ $wgEmailAuthentication = true;
 
 ## Database settings
 $wgDBtype           = "mysql";
-$wgDBserver         = "db";
+$wgDBserver         = "mysql";
 $wgDBname           = "cgalwikidb";
 $wgDBuser           = "cgalwiki";
 $wgDBpassword       = "PASSWD";
@@ -231,7 +231,7 @@ $messages['group-cgaleditor'] = 'CGAL Editors';
 $messages['right-editeditors'] = 'Edit pages of the Editors: namespace';
 
 # Extension RenameUser
-require_once("$IP/extensions/Renameuser/specials/SpecialRenameuser.php");
+require_once("$IP/extensions/Renameuser/Renameuser.php");
 
 # Extension http://www.mediawiki.org/wiki/Extension:DiscussionThreading
 require_once("$IP/extensions/DiscussionThreading/DiscussionThreading.php");
