@@ -38,3 +38,6 @@ ADD php.ini /usr/local/etc/php/
 
 #Copy the LocalSettings.php to the image
 ADD LocalSettings.php /usr/src/mediawiki/
+
+RUN pear install mail \
+&& pear install net_smtp

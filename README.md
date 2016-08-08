@@ -26,3 +26,17 @@ Any time the wiki is upgraded, the update (/var/www/html/maintenance/update.php)
 
 The wiki is now online, and accessible at the following url : 
 http://localhost:8080
+
+To be able to send emails, some configuration might have to be done in the LocalSettings.txt : 
+the current configuration is : 
+
+$wgSMTP = array(
+        'host' => 'aspmx.l.google.com',
+        'IDHost' => 'CGAL Wiki',
+        'port' => '25',
+        'username' => false,
+        'password' => false,
+        'auth' => false
+); 
+
+This configuration allows emails to be sent without authentification but they will probably be received as spam, and only work for GMail and GoogleApps users. 

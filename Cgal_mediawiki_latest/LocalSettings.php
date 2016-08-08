@@ -105,6 +105,16 @@ $wgImageMagickConvertCommand = "/usr/bin/convert";
 $wgUploadDirectory       = "/var/www/html/images";
 $wgUploadPath       = "/images";
 
+//To be able to send emails.
+$wgSMTP = array(
+        'host' => 'aspmx.l.google.com',
+        'IDHost' => 'CGAL Wiki',
+        'port' => '25',
+        'username' => false,
+        'password' => false,
+        'auth' => false
+);
+
 ## If you use ImageMagick (or any other shell command) on a
 ## Linux server, this will need to be set to the name of an
 ## available UTF-8 locale
