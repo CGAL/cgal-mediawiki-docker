@@ -6,8 +6,14 @@ First you need to start a mysql server in a container. You can use the official 
 > docker run --rm --name mysql -e MYSQL_ROOT_PASSWORD=PASSWD -e MYSQL_USER=cgalwiki -e MYSQL_PASSWORD=PASSWD -e MYSQL_DATABASE=cgalwikidb mysql
  
  This will create a database called cgalwikidb and a user 'cgalwiki' that has superuser access but only for cgalwikidb.
- Then you need to load the wiki's database. 
- > docker exec -i mysql mysql -ucgalwiki -pPASSWD cgalwikidb < [path to your dump file on the host]
+ Then you need to load the wiki's database.
+To execute a dump, you can call 
+
+ > docker exec [container's name] sh -c 'exec mysqldump --all-databases -uroot -p"$MYSQL_ROOT_PASSWORD"' > [host's path to dump.sql] 
+
+To load a dump, call
+
+ > docker exec -i [container's name] mysql -ucgalwiki -pPASSWD cgalwikidb < [path to your dump file on the host]
 
 The database is now ready. 
 The next step will be to build the wikimedia image. 
@@ -22,7 +28,9 @@ Now you can run the container :
 
 > docker run --rm --name mediawiki --link mysql:mysql -v [the volume used to store the mediawiki images on the host]:/var/www/html/images/:Z -p 8080:80 -e MEDIAWIKI_DB_PASSWORD=PASSWD cgal/mediawiki:latest
 
-Any time the wiki is upgraded, the update (/var/www/html/maintenance/update.php) script must be executed inside the container. 
+Any time the wiki is upgraded, the update (/var/www/html/maintenance/update.php) script must be executed inside the container with 
+
+>docker exec
 
 The wiki is now online, and accessible at the following url : 
 http://localhost:8080
