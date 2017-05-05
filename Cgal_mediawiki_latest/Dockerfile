@@ -6,21 +6,20 @@ RUN set -x; \
 
 #Download the extensions and extract them
 RUN cd /usr/src/mediawiki/extensions/ \
-&& curl https://extdist.wmflabs.org/dist/extensions/Math-REL1_27-efdd7c2.tar.gz --output ./math.tar.gz \
+&& curl https://extdist.wmflabs.org/dist/extensions/Math-REL1_27-ba08a3a.tar.gz --output ./math.tar.gz \
 && curl https://extdist.wmflabs.org/dist/extensions/DiscussionThreading-REL1_27-f9cc186.tar.gz --output ./discussionthreading.tar.gz \
 && curl https://extdist.wmflabs.org/dist/extensions/UserMerge-REL1_27-31ea86d.tar.gz --output ./usermerge.tar.gz \
-&& curl https://extdist.wmflabs.org/dist/extensions/ConfirmAccount-REL1_27-071b0df.tar.gz --output ./confirmaccount.tar.gz \
+&& curl https://extdist.wmflabs.org/dist/extensions/ConfirmAccount-REL1_27-f156073.tar.gz --output ./confirmaccount.tar.gz \
 && curl https://extdist.wmflabs.org/dist/extensions/Renameuser-REL1_27-615d761.tar.gz --output ./renameuser.tar.gz \
 && curl https://extdist.wmflabs.org/dist/extensions/MagicNoCache-REL1_27-9e93e90.tar.gz --output ./magicnocache.tar.gz \
 && curl https://extdist.wmflabs.org/dist/extensions/UrlGetParameters-REL1_27-dd6c467.tar.gz --output ./urlgetparameters.tar.gz \
-&& curl -L https://github.com/wikimedia/mediawiki-extensions-SemanticFormsInputs/archive/0.10.1.zip --output semanticformsinput.zip \
+&& curl https://extdist.wmflabs.org/dist/extensions/PageForms-REL1_27-7e54d7c.tar.gz --output ./pageforms.tar.gz \
 && tar -xf ./math.tar.gz \
 && tar -xf ./discussionthreading.tar.gz \
 && tar -xf ./usermerge.tar.gz \
 && tar -xf ./renameuser.tar.gz \
 && tar -xf ./confirmaccount.tar.gz \
-&& unzip ./semanticformsinput.zip \
-&& mv ./mediawiki-extensions-SemanticFormsInputs-0.10.1 ./SemanticFormsInputs\
+&& tar -xf ./pageforms.tar.gz \
 && tar -xf ./magicnocache.tar.gz \
 && tar -xf ./urlgetparameters.tar.gz 
 

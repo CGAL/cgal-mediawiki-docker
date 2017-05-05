@@ -335,7 +335,7 @@ require __DIR__ . '/vendor/autoload.php';
 
 # Semantic Web
 #enableSemantic('cgal.geometryfactory.com');
-require_once("$IP/extensions/SemanticFormsInputs/SemanticFormsInputs.php");
+wfLoadExtension( 'PageForms' );
 
 # https://semantic-mediawiki.org/wiki/Help:Configuration#smwgQConceptCaching
 $mwgQConceptCaching = CONCEPT_CACHE_NONE;

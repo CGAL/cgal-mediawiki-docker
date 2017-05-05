@@ -24,10 +24,23 @@ Then the latest :
 
 > docker build -t 'cgal/mediawiki:latest' [path to Cgal_mediawiki_latest]
 
+To create a retro-proxy that will generate automatically certificates, you need 3 writable volumes, `certificates`, `virtual_hosts` and `html`.
+
+> docker run -d -p 8080:80 -p 443:443 \
+    --name nginx-proxy -v /path/to/`certificates`:/etc/nginx/certs:ro -v /path/to/`virtual_hosts`:/etc/nginx/vhost.d -v /path/to/`html`:/usr/share/nginx/html -v /var/run/docker.sock:/tmp/docker.sock:ro --label com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy=true jwilder/nginx-proxy
+
+> docker run -d \
+    -v /path/to/`certificates`:/etc/nginx/certs:rw -v /var/run/docker.sock:/var/run/docker.sock:ro --volumes-from nginx-proxy jrcs/letsencrypt-nginx-proxy-companion
+
+
 Now you can run the container :
+Without th proxy:
 
 > docker run --rm --name mediawiki --link mysql:mysql -v [the volume used to store the mediawiki images on the host]:/var/www/html/images/:Z -p 8080:80 -e MEDIAWIKI_DB_PASSWORD=PASSWD cgal/mediawiki:latest
 
+Or with the proxy:
+
+> docker run --rm --name mediawiki --link mysql:mysql -v [the volume used to store the mediawiki images on the host]:/var/www/html/images/:Z -p 80 -e MEDIAWIKI_DB_PASSWORD=PASSWD -e "VIRTUAL_HOST=`your.domain.com`" -e "LETSENCRYPT_HOST=`your.domain.com`" -e "LETSENCRYPT_EMAIL=`your@email.com`" cgal/mediawiki:latest
 Any time the wiki is upgraded, the update (/var/www/html/maintenance/update.php) script must be executed inside the container with 
 
 >docker exec
