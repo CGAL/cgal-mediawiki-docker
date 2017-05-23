@@ -1,0 +1,50 @@
+version: '2'
+
+volumes:
+  nginx-certificates:
+  nginx-virtual_hosts:
+  nginx-html:
+
+services:
+  db:
+    image: mysql
+    # .env-mysql defines `MYSQL_ROOT_PASSWORD`
+    env_file: .env-mysql
+
+  nginx-proxy:
+    ports:
+      - 46.105.38.209:443:443
+      - 46.105.38.209:80:80
+    image: jwilder/nginx-proxy
+    volumes:
+      - nginx-certificates:/etc/nginx/certs:ro
+      - nginx-virtual_hosts:/etc/nginx/vhost.d:Z
+      - nginx-html:/usr/share/nginx/html:Z
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    labels:
+      com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy: "true"
+    security_opt:
+      - label:type:docker_t
+
+  nginx-proxy-companion:
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    volumes_from:
+      - nginx-proxy
+    volumes:
+      - nginx-certificates:/etc/nginx/certs:Z
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    security_opt:
+      - label:type:docker_t
+
+  wiki:
+    image: cgal/mediawiki:latest
+    build: .
+    links:
+      - db:mysql
+    env_file: .env-mysql
+    environment:
+      - MEDIAWIKI_DB_HOST=mysql
+      - VIRTUAL_HOST=wiki.cgal.org
+      - LETSENCRYPT_HOST=wiki.cgal.org
+      - LETSENCRYPT_EMAIL=laurent.rineau@gmail.com
+
