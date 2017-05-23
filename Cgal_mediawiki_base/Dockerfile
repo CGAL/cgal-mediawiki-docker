@@ -41,7 +41,8 @@ RUN MEDIAWIKI_DOWNLOAD_URL="https://releases.wikimedia.org/mediawiki/$MEDIAWIKI_
     && curl -fSL "$MEDIAWIKI_DOWNLOAD_URL" -o mediawiki.tar.gz \
     && curl -fSL "${MEDIAWIKI_DOWNLOAD_URL}.sig" -o mediawiki.tar.gz.sig \
     && gpg --verify mediawiki.tar.gz.sig \
-    && tar -xf mediawiki.tar.gz -C /usr/src/mediawiki --strip-components=1
+    && tar -xf mediawiki.tar.gz -C /usr/src/mediawiki --strip-components=1 \
+    && rm mediawiki.tar.gz mediawiki.tar.gz.sig
 
 
 COPY apache/mediawiki.conf /etc/apache2/
