@@ -4,12 +4,15 @@ volumes:
   nginx-certificates:
   nginx-virtual_hosts:
   nginx-html:
+  mysql:
 
 services:
   db:
     image: mysql
     # .env-mysql defines `MYSQL_ROOT_PASSWORD`
     env_file: .env-mysql
+    volumes:
+      - mysql:/var/lib/mysql
 
   nginx-proxy:
     ports:
