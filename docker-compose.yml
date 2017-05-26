@@ -53,3 +53,5 @@ services:
       - VIRTUAL_HOST=wiki.cgal.org
       - LETSENCRYPT_HOST=wiki.cgal.org
       - LETSENCRYPT_EMAIL=laurent.rineau@gmail.com
+    volumes:
+      - ${CGAL_WIKI_IMAGES}:/var/www/html/images:Z
