@@ -44,11 +44,12 @@ services:
     build: .
     links:
       - db:mysql
-    env_file: .env-mysql
+    env_file:
+      - .env-mysql
+      - .env-htpasswd
     environment:
       - MEDIAWIKI_DB_HOST=mysql
       - MEDIAWIKI_DB_NAME=cgalwikidb
       - VIRTUAL_HOST=wiki.cgal.org
       - LETSENCRYPT_HOST=wiki.cgal.org
       - LETSENCRYPT_EMAIL=laurent.rineau@gmail.com
-
