@@ -34,10 +34,10 @@ To create a retro-proxy that will generate automatically certificates, you need 
 Now you can run the container :
 
 * Without the proxy:
-> docker run --rm --name mediawiki --link mysql:mysql -v [the volume used to store the mediawiki images on the host]:/var/www/html/images/:Z -p 8080:80 -e MEDIAWIKI_DB_PASSWORD=PASSWD -e -e MEDIAWIKI_DB_PASSWORD=[usual cgal password] -e HTPASSWDCGALGROUP=[usual cgal user] cgal/mediawiki:latest
+> docker run --rm --name mediawiki --link mysql:mysql -v [the volume used to store the mediawiki images on the host]:/var/www/html/images/:Z -p 8080:80 -e MEDIAWIKI_DB_PASSWORD=PASSWD -e MEDIAWIKI_DB_PASSWORD=[usual cgal password] -e HTPASSWDCGALGROUP=[usual cgal user] cgal/mediawiki:latest
 
 * Or with the proxy:
-> docker run --rm --name mediawiki --link mysql:mysql -v [the volume used to store the mediawiki images on the host]:/var/www/html/images/:Z -p 80 -e MEDIAWIKI_DB_PASSWORD=PASSWD -e "VIRTUAL_HOST=`your.domain.com`" -e "LETSENCRYPT_HOST=`your.domain.com`" -e "LETSENCRYPT_EMAIL=`your@email.com`" cgal/mediawiki:latest
+> docker run --rm --name mediawiki --link mysql:mysql -v [the volume used to store the mediawiki images on the host]:/var/www/html/images/:Z -p 80 -e MEDIAWIKI_DB_PASSWORD=PASSWD -e MEDIAWIKI_DB_PASSWORD=[usual cgal password] -e HTPASSWDCGALGROUP=[usual cgal user] -e "VIRTUAL_HOST=`your.domain.com`" -e "LETSENCRYPT_HOST=`your.domain.com`" -e "LETSENCRYPT_EMAIL=`your@email.com`" cgal/mediawiki:latest
 
 Any time the wiki is upgraded, the update (`/var/www/html/maintenance/update.php`) script must be executed inside the container with 
 
