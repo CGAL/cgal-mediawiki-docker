@@ -334,7 +334,7 @@ require_once "$IP/extensions/ParserFunctions/ParserFunctions.php";
 require __DIR__ . '/vendor/autoload.php';
 
 # Semantic Web
-#enableSemantic('cgal.geometryfactory.com');
+enableSemantics('cgal.geometryfactory.com');
 wfLoadExtension( 'PageForms' );
 
 # https://semantic-mediawiki.org/wiki/Help:Configuration#smwgQConceptCaching
