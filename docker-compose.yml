@@ -6,8 +6,18 @@ volumes:
   nginx-html:
   mysql:
 
+networks:
+  docker-postfix-bridge:
+    external: true
+  web-proxy:
+    driver: bridge
+  database:
+    driver: bridge
+
 services:
   db:
+    networks:
+      - database
     image: mysql
     # .env-mysql defines `MYSQL_ROOT_PASSWORD`
     env_file: .env-mysql
@@ -15,6 +25,8 @@ services:
       - mysql:/var/lib/mysql
 
   nginx-proxy:
+    networks:
+      - web-proxy
     ports:
       - 46.105.38.209:443:443
       - 46.105.38.209:80:80
@@ -24,12 +36,15 @@ services:
       - nginx-virtual_hosts:/etc/nginx/vhost.d:Z
       - nginx-html:/usr/share/nginx/html:Z
       - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./passwords:/etc/nginx/htpasswd:ro
     labels:
       com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy: "true"
     security_opt:
       - label:type:docker_t
 
   nginx-proxy-companion:
+    networks:
+      - web-proxy
     image: jrcs/letsencrypt-nginx-proxy-companion
     volumes_from:
       - nginx-proxy
@@ -40,6 +55,10 @@ services:
       - label:type:docker_t
 
   wiki:
+    networks:
+      - web-proxy
+      - database
+      - docker-postfix-bridge
     image: cgal/mediawiki:latest
     build: .
     links:

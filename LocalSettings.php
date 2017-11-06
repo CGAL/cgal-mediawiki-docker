@@ -107,7 +107,7 @@ $wgUploadPath       = "/images";
 
 //To be able to send emails.
 $wgSMTP = array(
-        'host' => 'aspmx.l.google.com',
+        'host' => '192.168.2.1',
         'IDHost' => 'CGAL Wiki',
         'port' => '25',
         'username' => false,
