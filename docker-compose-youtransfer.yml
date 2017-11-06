@@ -1,0 +1,32 @@
+version: '2'
+
+networks:
+  youtransfer:
+
+services:
+  nginx-proxy:
+    networks:
+      - youtransfer
+
+  nginx-proxy-companion:
+    networks:
+      - youtransfer
+
+  youtransfer:
+    image: remie/youtransfer:stable
+    expose:
+      - "5000"
+    networks:
+      - youtransfer
+      - docker-postfix-bridge
+    environment:
+      - VIRTUAL_PORT=5000
+      - VIRTUAL_HOST=upload.geometryfactory.com
+      - LETSENCRYPT_HOST=upload.geometryfactory.com
+      - LETSENCRYPT_EMAIL=laurent.rineau@gmail.com
+    volumes:
+      - ./youtransfer/config:/opt/youtransfer/config:ro
+      - ./youtransfer/templates:/opt/youtransfer/src/templates:ro
+      - ./youtransfer/upload:/opt/youtransfer/uploads:z
+
+#docker run --add-host smtp:192.168.2.1 --network youtransfer --name youtransfer --expose 5000 --rm -eVIRTUAL_PORT=5000 -eVIRTUAL_HOST=upload.geometryfactory.com -eLETSENCRYPT_HOST=upload.geometryfactory.com -eLETSENCRYPT_EMAIL=laurent.rineau@gmail.com remie/youtransfer:stable
