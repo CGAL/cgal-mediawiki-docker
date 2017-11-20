@@ -5,9 +5,9 @@
 		<p>
 			{{ email.from }} wants to share file(s).
 		</p>
-		{% if message %}
+		{% if email.body %}
 		<p>
-			{{ message }}
+			{{ email.body }}
 		</p>
 		{% endif %}
 		<table>

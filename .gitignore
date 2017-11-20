@@ -2,3 +2,8 @@
 /.env-htpasswd
 /.env
 youtransfer/config/settings.json
+youtransfer/config
+youtransfer/upload
+passwords
+*~
+docker-compose-Linux-x86_64
