@@ -1,3 +1,4 @@
 /.env-mysql
 /.env-htpasswd
 /.env
+youtransfer/config/settings.json
