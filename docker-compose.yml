@@ -32,6 +32,7 @@ services:
       - 46.105.38.209:80:80
     image: jwilder/nginx-proxy
     volumes:
+      - ./my-proxy.conf:/etc/nginx/conf.d/my_proxy.conf:ro
       - nginx-certificates:/etc/nginx/certs:ro
       - nginx-virtual_hosts:/etc/nginx/vhost.d:Z
       - nginx-html:/usr/share/nginx/html:Z
