@@ -25,7 +25,7 @@ services:
       - LETSENCRYPT_HOST=upload.geometryfactory.com
       - LETSENCRYPT_EMAIL=laurent.rineau@gmail.com
     volumes:
-      - ./youtransfer/config:/opt/youtransfer/config:ro
+      - ./youtransfer/config:/opt/youtransfer/config:rw
       - ./youtransfer/templates:/opt/youtransfer/src/templates:ro
       - ./youtransfer/upload:/opt/youtransfer/uploads:z
 
