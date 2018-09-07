@@ -1,0 +1,13 @@
+version: '2.1'
+
+services:
+  nginx-proxy:
+    ports:
+      - 46.105.38.209:443:443
+      - 46.105.38.209:80:80
+  wiki:
+    environment:
+      - VIRTUAL_HOST=wiki.cgal.org
+      - LETSENCRYPT_HOST=wiki.cgal.org
+      - LETSENCRYPT_EMAIL=laurent.rineau@gmail.com
+      - CGAL_WIKI_READ_ONLY=1

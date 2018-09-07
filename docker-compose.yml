@@ -1,4 +1,4 @@
-version: '2'
+version: '2.1'
 
 volumes:
   nginx-certificates:
@@ -28,8 +28,8 @@ services:
     networks:
       - web-proxy
     ports:
-      - 46.105.38.209:443:443
-      - 46.105.38.209:80:80
+      - 80:80
+      - 443:443
     image: jwilder/nginx-proxy
     volumes:
       - /var/cache/nginx:/var/cache/nginx:z
@@ -69,10 +69,8 @@ services:
       - .env-mysql
       - .env-htpasswd
     environment:
+      - VIRTUAL_HOST=localhost
       - MEDIAWIKI_DB_HOST=mysql
       - MEDIAWIKI_DB_NAME=cgalwikidb
-      - VIRTUAL_HOST=wiki.cgal.org
-      - LETSENCRYPT_HOST=wiki.cgal.org
-      - LETSENCRYPT_EMAIL=laurent.rineau@gmail.com
     volumes:
-      - ${CGAL_WIKI_IMAGES}:/var/www/html/images:Z
+      - ${CGAL_WIKI_IMAGES:-./images}:/var/www/html/images:Z

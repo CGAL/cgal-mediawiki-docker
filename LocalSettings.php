@@ -294,7 +294,9 @@ require_once( "$IP/extensions/UserMerge/UserMerge.php" );
 $wgGroupPermissions['bureaucrat']['usermerge'] = true;
 
 # Disable reading by anonymous users
-$wgGroupPermissions['*']['read'] = false;
+if (getenv('CGAL_WIKI_READ_ONLY') != '') {
+   $wgGroupPermissions['*']['read'] = false;
+}
 
 # Extension ConfirmAccount
 require_once("$IP/extensions/ConfirmAccount/ConfirmAccount.php");
