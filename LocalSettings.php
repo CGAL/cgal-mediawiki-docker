@@ -89,7 +89,7 @@ $wgDBmysql5 = false;
 
 # Postgres specific settings
 $wgDBport           = "5432";
-$wgDBmwschema       = "mediawiki";
+$wgDBmwschema       = $wgDBname;
 $wgDBts2schema      = "public";
 
 ## Shared memory settings
@@ -144,17 +144,15 @@ $wgLocalInterwiki   = $wgSitename;
 
 $wgLanguageCode = "en";
 
-$wgProxyKey = "3228af4b1589702ba673346685d2afbcdac500d5a2da385703527575e45822e3";
-
 ## Default skin: you can change the default skin. Use the internal symbolic
 ## names, ie 'standard', 'nostalgia', 'cologneblue', 'monobook':
-$wgDefaultSkin = 'monobook';
+#$wgDefaultSkin = 'vector';
 # Enabled skins.
 # The following skins were automatically enabled:
-wfLoadSkin( 'CologneBlue' );
-wfLoadSkin( 'Modern' );
 wfLoadSkin( 'MonoBook' );
+wfLoadSkin( 'Timeless' );
 wfLoadSkin( 'Vector' );
+
 ## For attaching licensing metadata to pages, and displaying an
 ## appropriate copyright notice / icon. GNU Free Documentation
 ## License and Creative Commons licenses are supported so far.
@@ -249,6 +247,11 @@ require_once("$IP/extensions/DiscussionThreading/DiscussionThreading.php");
 # Extension http://www.mediawiki.org/wiki/Extension:SyntaxHighlight_GeSHi
 wfLoadExtension( 'SyntaxHighlight_GeSHi' );
 $wgSyntaxHighlightDefaultLang = "cpp-qt";
+
+# https://www.mediawiki.org/wiki/Extension:LookupUser
+wfLoadExtension( 'LookupUser' );
+$wgGroupPermissions['*']['lookupuser'] = false;
+$wgGroupPermissions['sysop']['lookupuser'] = true;
 
 /** Should we allow the user's to select their own skin that will override the default? */
 $wgAllowUserSkin = false;
