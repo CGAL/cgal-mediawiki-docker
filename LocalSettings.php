@@ -89,7 +89,7 @@ $wgDBmysql5 = false;
 
 # Postgres specific settings
 $wgDBport           = "5432";
-$wgDBmwschema       = $wgDBname;
+#$wgDBmwschema       = $wgDBname;
 $wgDBts2schema      = "public";
 
 ## Shared memory settings
