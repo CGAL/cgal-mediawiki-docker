@@ -3,5 +3,5 @@ version: '2.1'
 services:
   db:
     volumes:
-      - ./docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/:ro
-      - ${CGAL_WIKI_DB_DUMP:-./cgalwikidb.sql}:/cgalwikidb.sql:ro
+      - ./docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/:z
+      - ${CGAL_WIKI_DB_DUMP:-./cgalwikidb.sql}:/cgalwikidb.sql:z
