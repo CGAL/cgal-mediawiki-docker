@@ -136,9 +136,7 @@ $wgShellLocale = "en_US.utf8";
 require_once("$IP/extensions/Math/Math.php");
 // Set MathML as default rendering option
 $wgDefaultUserOptions['math'] = 'mathml';
-$wgMathFullRestbaseURL= 'https://api.formulasearchengine.com/';
-#$wgTexvc = "$IP/math-texvc/texvc";
-#$wgMathTexvcCheckExecutable = "$IP/math-texvc/texvccheck";
+$wgMathFullRestbaseURL = 'https://en.wikipedia.org/api/rest_';
 
 $wgLocalInterwiki   = $wgSitename;
 
