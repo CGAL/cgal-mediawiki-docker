@@ -41,7 +41,7 @@ Now you can run the container :
 
 Any time the wiki is upgraded, the update (`/var/www/html/maintenance/update.php`) script must be executed inside the container with 
 
->docker exec
+>docker exec mediawiki maintenance/update.php --quick
 
 The wiki is now online, and accessible at the following url : 
 http://localhost:8080
@@ -61,3 +61,18 @@ $wgSMTP = array(
 ```
 
 This configuration allows emails to be sent without authentication but they will probably be received as spam, and only work for GMail and GoogleApps users. 
+
+## Using docker-compose
+
+In dev, using http://localhost/:
+> docker-compose -f docker-compose.yml -f dev-wiki.yml up -d
+
+In production:
+> docker-compose -f docker-compose.yml -f prod-wiki.yml up -d
+
+To load the database from a dump:
+> docker-compose -f docker-compose.yml -f prod-wiki.yml stop
+> docker-compose -f docker-compose.yml -f load-db.yml up db
+
+To upgrade the database schemas after an upgrade of Mediawiki versions:
+> docker-compose -f docker-compose.yml -f prod-wiki.yml exec wiki maintenance/update.php --quick
