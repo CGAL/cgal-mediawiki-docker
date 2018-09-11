@@ -54,7 +54,7 @@ RUN chmod +x /usr/src/mediawiki/composer-install.sh \
 RUN cd /usr/src/mediawiki/extensions/ \
 && curl https://extdist.wmflabs.org/dist/extensions/Math-REL1_27-ba08a3a.tar.gz --output ./math.tar.gz \
 && curl https://extdist.wmflabs.org/dist/extensions/UserMerge-REL1_27-31ea86d.tar.gz --output ./usermerge.tar.gz \
-&& curl https://extdist.wmflabs.org/dist/extensions/ConfirmAccount-REL1_27-f156073.tar.gz --output ./confirmaccount.tar.gz \
+&& curl https://extdist.wmflabs.org/dist/extensions/ConfirmAccount-REL1_31-5d98110.tar.gz --output ./confirmaccount.tar.gz \
 && curl https://extdist.wmflabs.org/dist/extensions/Renameuser-REL1_27-615d761.tar.gz --output ./renameuser.tar.gz \
 && curl https://extdist.wmflabs.org/dist/extensions/MagicNoCache-REL1_27-9e93e90.tar.gz --output ./magicnocache.tar.gz \
 && curl https://extdist.wmflabs.org/dist/extensions/UrlGetParameters-REL1_27-dd6c467.tar.gz --output ./urlgetparameters.tar.gz \
