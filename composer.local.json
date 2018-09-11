@@ -2,8 +2,7 @@
 	"require": {
 		"php": ">=5.3.2",
 		"mediawiki/semantic-media-wiki": "~2.5",
-		"mediawiki/page-forms": "^4.3.1",
-		"mediawiki/semantic-watchlist": "~1.0"
+		"mediawiki/page-forms": "^4.3.1"
 	},
 	"suggest": {
 		"ext-fileinfo": "More accurate file type detection for uploaded files",
