@@ -239,9 +239,6 @@ $messages['right-editeditors'] = 'Edit pages of the Editors: namespace';
 # Extension RenameUser
 require_once("$IP/extensions/Renameuser/Renameuser.php");
 
-# Extension http://www.mediawiki.org/wiki/Extension:DiscussionThreading
-require_once("$IP/extensions/DiscussionThreading/DiscussionThreading.php");
-
 # Extension http://www.mediawiki.org/wiki/Extension:SyntaxHighlight_GeSHi
 wfLoadExtension( 'SyntaxHighlight_GeSHi' );
 $wgSyntaxHighlightDefaultLang = "cpp-qt";

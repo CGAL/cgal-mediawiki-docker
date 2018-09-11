@@ -1,6 +1,6 @@
 #This image is a customized version of the MediaWiki image from Synctree, slightly modified to use version 1.31 instead of 1.24
 
-FROM php:7.2-apache
+FROM php:7.1-apache
 MAINTAINER GeometryFactory <laurent.rineau@cgal.org>
 
 ENV MEDIAWIKI_VERSION=1.31 MEDIAWIKI_FULL_VERSION=1.31.0 TERM=linux
@@ -53,7 +53,6 @@ RUN chmod +x /usr/src/mediawiki/composer-install.sh \
 #Download the extensions and extract them
 RUN cd /usr/src/mediawiki/extensions/ \
 && curl https://extdist.wmflabs.org/dist/extensions/Math-REL1_27-ba08a3a.tar.gz --output ./math.tar.gz \
-&& curl https://extdist.wmflabs.org/dist/extensions/DiscussionThreading-REL1_27-f9cc186.tar.gz --output ./discussionthreading.tar.gz \
 && curl https://extdist.wmflabs.org/dist/extensions/UserMerge-REL1_27-31ea86d.tar.gz --output ./usermerge.tar.gz \
 && curl https://extdist.wmflabs.org/dist/extensions/ConfirmAccount-REL1_27-f156073.tar.gz --output ./confirmaccount.tar.gz \
 && curl https://extdist.wmflabs.org/dist/extensions/Renameuser-REL1_27-615d761.tar.gz --output ./renameuser.tar.gz \
@@ -62,7 +61,6 @@ RUN cd /usr/src/mediawiki/extensions/ \
 && curl https://extdist.wmflabs.org/dist/extensions/PageForms-REL1_27-7e54d7c.tar.gz --output ./pageforms.tar.gz \
 && curl https://extdist.wmflabs.org/dist/extensions/LookupUser-REL1_31-56fb106.tar.gz --output lookupuser.tar.gz \
 && tar -xf ./math.tar.gz \
-&& tar -xf ./discussionthreading.tar.gz \
 && tar -xf ./usermerge.tar.gz \
 && tar -xf ./renameuser.tar.gz \
 && tar -xf ./confirmaccount.tar.gz \
@@ -71,7 +69,6 @@ RUN cd /usr/src/mediawiki/extensions/ \
 && tar -xf ./urlgetparameters.tar.gz \
 && tar -xf ./lookupuser.tar.gz \
 && rm ./math.tar.gz \
-      ./discussionthreading.tar.gz \
       ./usermerge.tar.gz \
       ./renameuser.tar.gz \
       ./confirmaccount.tar.gz \
