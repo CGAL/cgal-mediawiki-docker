@@ -72,6 +72,7 @@ In production:
 
 To load the database from a dump:
 > docker-compose -f docker-compose.yml -f prod-wiki.yml stop
+> docker volume rm cgal-mediawiki-docker_mysql
 > docker-compose -f docker-compose.yml -f load-db.yml up db
 
 To upgrade the database schemas after an upgrade of Mediawiki versions:
