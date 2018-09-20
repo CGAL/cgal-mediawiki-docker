@@ -351,4 +351,6 @@ $wgJobRunRate = 10;
 # https://www.mediawiki.org/wiki/Extension:UrlGetParameters
 require_once( "$IP/extensions/UrlGetParameters/UrlGetParameters.php" );
 
-
+# Signature button in the edit toolbar
+# https://www.mediawiki.org/wiki/Manual:$wgExtraSignatureNamespaces
+$wgExtraSignatureNamespaces = array( NS_MAIN, NS_HELP, NS_EDITORS );
