@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -e
+set -o pipefail
+
+DATE=`date '+%a'`
+cd /home/lrineau/Git/cgal-mediawiki-docker
+source .env-mysql
+/home/lrineau/.local/bin/docker-compose exec -T db mysqldump -p${MYSQL_ROOT_PASSWORD} --default-character-set=latin1 cgalwikidb | gzip > cgalwiki-backup/cgalwiki-${DATE}.sql.gz
+rsync -r /srv/CGAL/wiki/images/  cgalwiki-backup/files/
+
+echo "CGAL wiki backup OK"
