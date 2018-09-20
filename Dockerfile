@@ -58,13 +58,11 @@ RUN cd /usr/src/mediawiki/extensions/ \
 && curl https://extdist.wmflabs.org/dist/extensions/Renameuser-REL1_27-615d761.tar.gz --output ./renameuser.tar.gz \
 && curl https://extdist.wmflabs.org/dist/extensions/MagicNoCache-REL1_27-9e93e90.tar.gz --output ./magicnocache.tar.gz \
 && curl https://extdist.wmflabs.org/dist/extensions/UrlGetParameters-REL1_27-dd6c467.tar.gz --output ./urlgetparameters.tar.gz \
-&& curl https://extdist.wmflabs.org/dist/extensions/PageForms-REL1_27-7e54d7c.tar.gz --output ./pageforms.tar.gz \
 && curl https://extdist.wmflabs.org/dist/extensions/LookupUser-REL1_31-56fb106.tar.gz --output lookupuser.tar.gz \
 && tar -xf ./math.tar.gz \
 && tar -xf ./usermerge.tar.gz \
 && tar -xf ./renameuser.tar.gz \
 && tar -xf ./confirmaccount.tar.gz \
-&& tar -xf ./pageforms.tar.gz \
 && tar -xf ./magicnocache.tar.gz \
 && tar -xf ./urlgetparameters.tar.gz \
 && tar -xf ./lookupuser.tar.gz \
@@ -72,7 +70,6 @@ RUN cd /usr/src/mediawiki/extensions/ \
       ./usermerge.tar.gz \
       ./renameuser.tar.gz \
       ./confirmaccount.tar.gz \
-      ./pageforms.tar.gz \
       ./magicnocache.tar.gz \
       ./urlgetparameters.tar.gz \
       ./lookupuser.tar.gz
