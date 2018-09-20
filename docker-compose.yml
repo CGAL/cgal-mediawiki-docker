@@ -40,6 +40,13 @@ services:
       com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy: "true"
     security_opt:
       - label:type:docker_t
+    env_file:
+      - .env-htpasswd
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--spider", "https://wiki.cgal.org/"]
+      interval: 1m
+      timeout: 10s
+      retries: 3
 
   nginx-proxy-companion:
     networks:
@@ -71,3 +78,8 @@ services:
       - MEDIAWIKI_DB_NAME=cgalwikidb
     volumes:
       - ${CGAL_WIKI_IMAGES:-./images}:/var/www/html/images:Z
+    healthcheck:
+      test: ["CMD", "curl", "--silent", "-f", "http://localhost"]
+      interval: 1m
+      timeout: 20s
+      retries: 2
