@@ -3,7 +3,7 @@
 FROM php:7.1-apache
 MAINTAINER GeometryFactory <laurent.rineau@cgal.org>
 
-ENV MEDIAWIKI_VERSION=1.31 MEDIAWIKI_FULL_VERSION=1.31.0 TERM=linux
+ENV MEDIAWIKI_VERSION=1.31 MEDIAWIKI_FULL_VERSION=1.31.1 TERM=linux
 
 RUN set -x; \
     apt-get update \
