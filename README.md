@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> This repository is obsolete.
+
 # wikimedia-docker
 This repo contains the files used to deploy CGAL wiki with docker.
 
